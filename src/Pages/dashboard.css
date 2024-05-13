@@ -142,22 +142,22 @@
 .charts-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px; /* Margin between charts */
+  gap: 24px; 
 }
 
 .chart-wrapper {
-  flex: 1 0 calc(50% - 12px); /* Set width for two charts in a row with spacing */
-  max-width: 600px; /* Maximum width for responsiveness */
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Center horizontally */
+  flex: 1 0 calc(50% - 12px); 
+  max-width: 600px; 
+  display: flex; 
+  justify-content: center; 
 }
 
 .chart-container {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* Adjust padding */
-  height: 300px; /* Adjust height as needed */
+  padding: 20px; 
+  height: 300px; 
   position: relative;
 }
 

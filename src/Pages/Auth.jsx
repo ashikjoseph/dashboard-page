@@ -15,7 +15,7 @@ function Auth() {
 
     const loginAdmin = () => {
         if (email === defaultEmail && password === defaultPassword) {
-            // Simulating successful login
+            
             sessionStorage.setItem('token', 'your_generated_token');
             alert('Successfully logged in');
             navigate('/dashboard');
@@ -26,7 +26,7 @@ function Auth() {
 
     const registerUser = () => {
         if (email === defaultEmail && password === defaultPassword && username === defaultUsername) {
-            // Simulating successful registration
+            
             const newUser = { username, email, password };
             setRegisteredUsers([...registeredUsers, newUser]);
             alert('Successfully registered');

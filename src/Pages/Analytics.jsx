@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../Components/Header';
 import ProfileSection from '../Components/ProfileSection';
 import { LineChart } from '@mui/x-charts/LineChart';
-import './Analytics.css'; // Import CSS file for styling
+import './Analytics.css'; 
 
 const Analytics = () => {
     const [userList, setUserList] = useState([]);
@@ -23,15 +23,15 @@ const Analytics = () => {
                     const { email, login, phone, location, picture, dob } = data.results[0];
                     const { password } = login;
                     const country = location.country;
-                    const profilePicture = picture.large; // or picture.medium, picture.thumbnail based on your preference
+                    const profilePicture = picture.large; 
                     const age = calculateAge(new Date(dob.date)); // Calculate age based on date of birth
 
                     users.push({ email, password, phone, location, profilePicture, age });
 
-                    // Count users from each country
+                    
                     counts[country] = (counts[country] || 0) + 1;
-                    countData.push((counts[country] || 0) + 1); // Add user count to data array
-                    ageData.push(age); // Add age to data array
+                    countData.push((counts[country] || 0) + 1); 
+                    ageData.push(age); 
                 }
 
                 setUserList(users);
@@ -75,19 +75,19 @@ const Analytics = () => {
                                 <th>Phone</th>
                                 <th>Location</th>
                                 <th>Profile Picture</th>
-                                <th>Age</th> {/* New column for age */}
+                                <th>Age</th> 
                             </tr>
                         </thead>
                         <tbody>
                             {userList.map((user, index) => (
                                 <tr key={index}>
-                                    <td>{index + 1}</td> {/* Display index */}
+                                    <td>{index + 1}</td> 
                                     <td>{user.email}</td>
                                     <td>{user.password}</td>
                                     <td>{user.phone}</td>
                                     <td>{`${user.location.city}, ${user.location.country}`}</td>
                                     <td><img src={user.profilePicture} alt="Profile" style={{ width: "50px", height: "50px" }} /></td>
-                                    <td>{user.age}</td> {/* Display age */}
+                                    <td>{user.age}</td>
                                 </tr>
                             ))}
                         </tbody>
