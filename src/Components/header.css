@@ -1,0 +1,36 @@
+.custom-navbar {
+    background-color: #3498db; /* Choose your desired background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  
+  .custom-navbar .navbar-brand {
+    color: #fff; /* Set brand text color to white */
+  }
+  
+  .custom-navbar .nav-link {
+    color: #fff !important; /* Set navigation link text color to white */
+  }
+  
+  .custom-navbar .nav-link:hover {
+    color: #f0f0f0 !important; /* Change navigation link text color on hover */
+  }
+  
+  .custom-navbar .form-control {
+    background-color: #fff; /* Set search input background color to white */
+    color: #333; /* Set search input text color */
+  }
+  
+  .custom-navbar .form-control::placeholder {
+    color: #aaa; /* Set placeholder text color */
+  }
+  
+  .custom-navbar .btn-outline-light {
+    border-color: #fff; /* Set search button border color */
+    color: #fff; /* Set search button text color */
+  }
+  
+  .custom-navbar .btn-outline-light:hover {
+    background-color: #fff; /* Change search button background color on hover */
+    color: #3498db; /* Change search button text color on hover */
+  }
+  
