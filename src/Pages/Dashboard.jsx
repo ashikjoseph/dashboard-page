@@ -8,6 +8,9 @@ import ProfileSection from '../Components/ProfileSection';
 import { BarChart } from '@mui/x-charts/BarChart';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import './dashboard.css';
 
 const xLabels = [
@@ -45,85 +48,98 @@ function Dashboard() {
   ];
 
   return (
-    <div className="dashboard">
-      <div className="sidebar">
-        <div className="logo">
-          <img src="https://i.pinimg.com/736x/14/ee/5c/14ee5c829bfbaa0b963d1ac799bb9964.jpg" alt="Company Logo" />
-        </div>
-        <div>
-          <ProfileSection {...profile} />
-        </div>
-        <ul className="nav-links">
-          <Link to="/analytics" style={{ textDecoration: "none", color: "black" }}><li><i className="fas fa-chart-line"></i>Analytics</li></Link>
-          <Link to="/performance" style={{ textDecoration: "none", color: "black" }}><li><i className="fas fa-tachometer-alt"></i> Performance</li></Link>
-          <Link to="/settings" style={{ textDecoration: "none", color: "black" }}><li><i className="fas fa-cog"></i> Settings</li></Link>
-        </ul>
-        <div className="logout-button">
-          <Link to="/" style={{ textDecoration: "none", color: "black" }}><button><i className="fas fa-sign-out-alt"></i> Logout</button></Link>
-        </div>
-      </div>
-      <div className="main-content">
-        <Header />
-        <div className="charts-container">
-          {/* DateCalendar */}
-          <div className="chart-wrapper mt-4">
-            <div className="chart-container">
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateCalendar />
-              </LocalizationProvider>
-            </div>
+    <Container fluid>
+      <Row>
+        {/* Sidebar */}
+        <Col md={3} className="sidebar" style={{height:"100%"}}>
+          <div className="logo">
+            <img src="https://i.pinimg.com/736x/14/ee/5c/14ee5c829bfbaa0b963d1ac799bb9964.jpg" alt="Company Logo" />
           </div>
-          {/* PieChart */}
-          <div className="chart-wrapper mt-4">
-            <div className="chart-container pie-chart" style={{ backgroundColor: "#f9f9f9", padding: "20px", borderRadius: "10px" }}>
-              <PieChart
-                series={[
-                  {
-                    data,
-                    highlightScope: { faded: 'global', highlighted: 'item' },
-                    faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-                  },
-                ]}
-                width={500}
-                height={200}
-              />
-            </div>
+          <div>
+            <ProfileSection {...profile} />
           </div>
-          {/* Gauge */}
-          <div className="chart-wrapper mt-4">
-            <div className="chart-container">
-              {weatherData && (
-                <>
-                  <h3>Current Temperature</h3>
-                  <Gauge width={200} height={200} value={weatherData.temp} />
-                </>
-              )}
-            </div>
+          <ul className="nav-links">
+            <li><Link to="/analytics" style={{ textDecoration: "none", color: "black" }}><i className="fas fa-chart-line"></i> Analytics</Link></li>
+            <li><Link to="/performance" style={{ textDecoration: "none", color: "black" }}><i className="fas fa-tachometer-alt"></i> Performance</Link></li>
+            <li><Link to="/settings" style={{ textDecoration: "none", color: "black" }}><i className="fas fa-cog"></i> Settings</Link></li>
+          </ul>
+          <div className="logout-button" style={{marginTop:"120px"}}>
+            <Link to="/" style={{ textDecoration: "none", color: "black"}}><button><i className="fas fa-sign-out-alt"></i> Logout</button></Link>
           </div>
+        </Col>
 
-          {/* BarChart */}
-          <div className="chart-wrapper mt-4">
-            <div className="chart-container">
-              {weatherData && (
-                <BarChart
-                  width={500}
-                  height={300}
-                  series={[
-                    { data: [weatherData.temp_min, weatherData.temp, weatherData.temp_max], label: 'Temperature', id: 'tempId' },
-                  ]}
-                  xAxis={[{ data: xLabels, scaleType: 'band' }]}
-                />
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        {/* Main Content */}
+        <Col md={9} className="main-content">
+          <Header />
+          <Row>
+            {/* DateCalendar */}
+            <Col md={6}>
+              <div className="chart-wrapper mt-4">
+                <div className="chart-container">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateCalendar />
+                  </LocalizationProvider>
+                </div>
+              </div>
+            </Col>
+
+            {/* PieChart */}
+            <Col md={6}>
+              <div className="chart-wrapper mt-4">
+                <div className="chart-container pie-chart" style={{ backgroundColor: "#f9f9f9", padding: "20px", borderRadius: "10px" }}>
+                  <PieChart
+                    series={[
+                      {
+                        data,
+                        highlightScope: { faded: 'global', highlighted: 'item' },
+                        faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+                      },
+                    ]}
+                    width={500}
+                    height={200}
+                  />
+                </div>
+              </div>
+            </Col>
+          </Row>
+
+          <Row>
+            {/* Gauge */}
+            <Col md={6}>
+              <div className="chart-wrapper mt-4">
+                <div className="chart-container">
+                  {weatherData && (
+                    <>
+                      <h3>Current Temperature</h3>
+                      <Gauge width={200} height={200} value={weatherData.temp} />
+                    </>
+                  )}
+                </div>
+              </div>
+            </Col>
+
+            {/* BarChart */}
+            <Col md={6}>
+              <div className="chart-wrapper mt-4">
+                <div className="chart-container">
+                  {weatherData && (
+                    <BarChart
+                      width={500}
+                      height={300}
+                      series={[
+                        { data: [weatherData.temp_min, weatherData.temp, weatherData.temp_max], label: 'Temperature', id: 'tempId' },
+                      ]}
+                      xAxis={[{ data: xLabels, scaleType: 'band' }]}
+                    />
+                  )}
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
 export default Dashboard;
-
-
-
-
